@@ -1,0 +1,242 @@
+@font-face{
+
+    font-family: RalewayRegular;
+    src: url("../fonts/Raleway-Regular.ttf");
+}
+/* Corpo */
+body
+{
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+	user-select: none;
+}
+
+#principal
+{
+    width: 100%;
+    height: 768px;
+	background-color: #fff;
+	border-bottom: solid 1px #031634;
+}
+/**/
+/*Toolbar*/
+#toolbar
+{
+	width: 85%;
+	height: 50px;
+	float: left;
+	border-bottom: solid 1px #FFF;
+	background-color: #031634;
+}
+#nomePagina
+{
+	width: 20%;
+	margin-left: 16px;
+	color: #FFF;
+	font-family: Calibri;
+	font-size: 28pt;
+	float: left;
+}
+#botoesBox
+{
+	width: 150px;
+	float: right;
+	margin-right: 16px;
+	height: 100%;
+}
+#botoesBox .botao
+{
+	width: 33%;
+	height: 100%;
+	float: right;
+	color: #fff;
+	font-size: 28pt;
+	line-height: 1.5;
+	cursor: pointer;
+	font-family: RalewayRegular;
+	text-align: center;
+}
+
+#botoesBox .botao:hover
+{
+	background-color: #fff;
+	color: #4682b4;
+}
+
+#botoesBox .botao:last-of-type
+{
+	line-height:1.9;
+}
+/* Nav */
+nav
+{
+	width: 14.9%;
+	float: left;
+	height: 100%;
+	border-right: inset 1px #031634;
+	background-color: #031634;
+}
+
+nav #navLogo
+{
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 50px;
+	overflow: hidden;
+	box-shadow: 0px 0px 2px 1px rgba(255,255,255,0.8);
+	cursor: pointer;
+}
+
+nav #navLogo img
+{
+	width: 100%;
+	height: 100%;
+}
+
+nav ul
+{
+	width: 100%;
+	list-style: none;
+	padding: 0;
+	border: 0;
+	margin: 0 auto;
+	margin-top: 25px;
+}
+
+nav ul li
+{
+	width: 90%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #fff;
+	border: solid 2px #4682b4;
+	font-family: Calibri;
+	font-size: 20pt;
+	text-align: center;
+	color: #4682b4;
+	cursor: pointer;
+	margin: 0 auto;
+	border-radius: 4px;
+}
+
+nav ul li:hover
+{
+	background-color: #4682b4;
+	color: #fff;
+	border-color: #fff;
+}
+
+nav ul li:not(:first-of-type)
+{
+	margin-top: 10px;
+}
+
+/**/
+/*Conteúdo*/
+#conteudo
+{
+	width: 85%;
+	float: left;
+	height: 717px;
+
+}
+
+#titulo
+{
+	margin: 0 auto;
+	margin-top: 25px;
+	width: 80%;
+	font-family: RalewayRegular;
+	font-size: 32pt;
+	text-align: center;
+}
+
+#banner
+{
+	margin: 0 auto;
+	margin-top: 10px;
+	width: 80%;
+	height: 150px;
+}
+
+#banner img
+{
+	width: 100%;
+	height: 100%;
+}
+
+#paginasBox
+{
+	width: 80%;
+	height: 400px;
+	margin: 0 auto;
+	margin-top: 40px;
+
+}
+
+#paginasBox .pagina
+{
+	width: 25%;
+	height: 100%;
+	box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.6);
+	float: left;
+	border-radius: 4px;
+}
+
+#paginasBox .pagina:not(:first-of-type)
+{
+	margin-left: 12.5%;
+}
+
+.paginaImagem
+{
+	width: 225px;
+	height: 225px;
+	margin: 0 auto;
+	margin-top: 10px;
+	box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.6);
+}
+
+.paginaImagem img
+{
+	width: 100%;
+	height: 100%;
+}
+
+.paginaTitulo
+{
+	margin: 0 auto;
+	font-family: RalewayRegular;
+	text-align: center;
+	margin-top: 10px;
+	font-size: 18pt;
+}
+
+.paginaBotao
+{
+	width: 220px;
+	height: 50px;
+	background-color: #FFF;
+	margin: 0 auto;
+	margin-top: 25px;
+	border: solid 2px #4682b4;
+	border-radius: 4px;
+	color: #4682B4;
+	font-family:RalewayRegular;
+	text-align: center;
+	font-size: 20pt;
+	line-height: 1.75;
+	cursor: pointer;
+}
+
+.paginaBotao:hover
+{
+	background-color: #4682b4;
+	color: #fff;
+}
+
+
+
+/**/

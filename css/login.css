@@ -1,9 +1,15 @@
+@font-face{
+
+    font-family: RalewayRegular;
+    src: url("../fonts/Raleway-Regular.ttf");
+}
 /* Corpo */
 body
 {
     margin: 0 auto;
     padding: 0;
     border: 0;
+	user-select: none;
 }
 
 #principal
@@ -28,7 +34,7 @@ body
     margin-left: 33.5%;
 }
 /**/
-/* ConteÃºdo Esquerdo */
+/* Conteúdo Esquerdo */
 #conteudoEsquerdo
 {
     width: 39.9%;
@@ -38,7 +44,7 @@ body
     border-right: solid 2px #FFF;
 }
 /**/
-/* ConteÃºdo Direito */
+/* Conteúdo Direito */
 #conteudoDireito
 {
     width: 59.9%;
@@ -47,12 +53,60 @@ body
     background-color: #4682B4;
 }
 
+#bannerTourDreams
+{
+	width: 800px;
+	height: 174px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#conteudoDireitoContainer
+{
+	width: 40%;
+	height: 250px;
+	margin: 0 auto;
+	box-shadow: inset 0px 0px 9px -6px;
+	box-shadow: inset 0px 0px 9px -6px;
+	color: #fff;
+    margin-top: 5%;
+}
+
 #conteudoDireito table
 {
     margin: 0 auto;
-    margin-top: 12.5%;
-    height: 250px;
-    width: 25%;
-    background-color: #FFF;
+    max-height: 250px;
+    width: 90%;
+	padding-top: 40px;
+	font-family: Calibri Light;
+	font-size: 16px;
+	
+}
+
+#conteudoDireito table input
+{
+	width: 97%;
+	margin: 0 auto;
+	font-size: 16pt;
+	padding-left: 8px;
+}
+
+#conteudoDireito button
+{
+	font-family: RalewayRegular;
+	background-color: #031634;
+	border: 0;
+	width: 100%;
+	color: #FFF;
+	border: solid 2px #031634;
+	font-size: 20pt;
+	cursor: pointer;
+	margin-top: 5px;
+}
+
+#conteudoDireito button:hover
+{
+	background-color: #FFF;
+	color: #031634;
 }
 /**/
