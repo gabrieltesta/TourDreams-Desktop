@@ -1,0 +1,58 @@
+/* Corpo */
+body
+{
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+}
+
+#principal
+{
+    width: 100%;
+    height: 768px;
+    position: relative;
+}
+
+#principal #logo
+{
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    border: solid 1px #FFF;
+    background-color: #FFF;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    margin-top: 12.5%;
+    margin-left: 33.5%;
+}
+/**/
+/* Conteúdo Esquerdo */
+#conteudoEsquerdo
+{
+    width: 39.9%;
+    height: 100%;
+    float:left;
+    background-color: #031634;
+    border-right: solid 2px #FFF;
+}
+/**/
+/* Conteúdo Direito */
+#conteudoDireito
+{
+    width: 59.9%;
+    height: 100%;
+    float: left;
+    background-color: #4682B4;
+}
+
+#conteudoDireito table
+{
+    margin: 0 auto;
+    margin-top: 12.5%;
+    height: 250px;
+    width: 25%;
+    background-color: #FFF;
+}
+/**/

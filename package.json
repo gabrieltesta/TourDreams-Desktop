@@ -1,0 +1,17 @@
+{
+  "name": "TourDreams",
+  "main": "index.js",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "electron index.js",
+    "package": "",
+    "build": "electron-packager . agendareykon"
+  },
+  "author": "SixCode",
+  "devDependencies": {
+    "asar": "^0.13.0",
+    "electron": "^1.7.5",
+    "electron-packager": "^8.7.2",
+    "mysql": "^2.14.1"
+  }
+}

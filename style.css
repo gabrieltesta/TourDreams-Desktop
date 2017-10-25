@@ -1,0 +1,375 @@
+body
+{
+    font-family: Calibri;
+    background-color: #528ff2;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    user-select: none;
+    cursor: default;
+    -webkit-app-region: drag;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+#toolbar
+{
+    width: 100%;
+    height: 50px;
+    background-color: #2367d3;
+    position: relative;
+
+}
+
+img
+{
+    -webkit-app-region: no-drag;
+    -webkit-user-drag: none;
+}
+
+#toolbar #logo
+{
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+    position: absolute;
+    margin-left: 20px;
+}
+#toolbar #logo img
+{
+    width: 100%;
+    height: 100%;
+}
+
+
+#toolbar h3
+{
+    font-size: 16pt;
+    margin-left: 16px;
+    padding: 0;
+    margin: 0;
+    margin-left: 76px;
+    position: absolute;
+    margin-top: 12px;
+}
+
+#toolbar #fechar
+{
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    margin-left: 1148px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#toolbar #fechar img
+{
+    width: 100%;
+    height: 100%;
+}
+
+#conteudo
+{
+    width: 1200px;
+    height: 750px;
+    overflow-y: auto;
+    -webkit-app-region: no-drag;
+}
+
+#sidebarClosed
+{
+    float: left;
+    height: 750px;
+    min-height: 750px;
+    width: 50px;
+    background-color: #144ca8;
+    position: relative;
+    -webkit-app-region: no-drag;
+}
+
+#sidebarClosedExpand
+{
+    width: 48px;
+    height: 48px;
+    background-color: #2367d3;
+    position: absolute;
+    margin-left: 25px;
+    margin-top: 360px;
+    border-radius: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#sidebarClosedExpand img
+{
+    width: 90%;
+    height: 90%;
+    margin-left: 5px;
+    margin-top: 2.5px;
+}
+
+#sidebarOpen
+{
+    width: 200px;
+    height: 750px;
+    float: left;
+    margin-left: -150px;
+    background-color: #144ca8;
+    position: relative;
+    -webkit-app-region: no-drag;
+}
+
+#sidebarOpen ul
+{
+    list-style: none;
+    margin-top: 50px;
+    width: 100%;
+    margin-left: -40px;
+}
+
+#sidebarOpen li
+{
+    font-size: 18pt;
+    border-top: solid 1px #fff;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    cursor: pointer;
+}
+
+#sidebarOpen li:hover
+{
+    background-color: #fff;
+    color: #144ca8;
+}
+
+#sidebarOpen li:last-child
+{
+    border-bottom: solid 1px #fff;
+}
+
+#sidebarOpenExpand
+{
+    width: 48px;
+    height: 48px;
+    background-color: #2367d3;
+    position: absolute;
+    margin-left: 175px;
+    margin-top: 200px;
+    border-radius: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#sidebarOpenExpand img
+{
+    width: 90%;
+    height: 90%;
+    margin-left: 0px;
+    margin-top: 2.5px;
+    transform: rotate(180deg);
+}
+
+#tbl
+{
+    width: 705px;
+    max-height: 340px;
+    overflow-y:auto;
+    overflow-x: hidden;
+    margin-top: 50px;
+    margin-left: 150px;
+    border: solid 1px #fff;
+    float: left;
+}
+
+#tblContatos
+{
+    width: 100%;
+    background-color: #2367d3;
+
+}
+
+#tblContatos td
+{
+    background-color: #528fff;
+}
+
+.btn
+{
+    width: 200px;
+    height: 100px;
+    position: relative;
+    border: solid 1px #fff;
+    background-color: #2367d3;
+    float: left;
+    margin-top: 50px;
+    margin-left: 50px;
+    cursor: pointer;s
+
+}
+
+.btn img
+{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.btn span
+{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin-left: 100px;
+    font-size: 18pt;
+    line-height: 4;
+    text-align: center;
+}
+
+#adicionarContatoBox
+{
+    float: left;
+    width: 703px;
+    height: 160px;
+    margin-left: 150px;
+    margin-top: 25px;
+    background-color: #2367d3;
+    border: solid 1px #FFF;
+}
+
+#editarContatoBox
+{
+    float: left;
+    width: 703px;
+    height: 160px;
+    margin-left: 150px;
+    margin-top: 25px;
+    background-color: #2367d3;
+    border: solid 1px #fff;
+}
+
+#deletarContatoBox
+{
+    float: left;
+    width: 703px;
+    height: 75px;
+    margin-left: 150px;
+    margin-top: 25px;
+    background-color: #2367d3;
+    border: solid 1px #fff;
+}
+
+#tblAddContato
+{
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3px;
+}
+
+#tblAddContato th
+{
+    width: 20%;
+    text-align: left;
+    background-color: #528fff;
+}
+
+#tblAddContato input
+{
+    width: 99%;
+}
+
+#tblAddContato input[type=submit]
+{
+    width: 99.75%;
+}
+
+#tblAddContato td
+{
+    background-color: #528fff;
+}
+
+#tblEditContato
+{
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12.5px;
+}
+
+#tblEditContato th
+{
+    width: 20%;
+    text-align: left;
+    background-color: #528fff;
+}
+
+#tblEditContato input
+{
+    width: 99%;
+}
+
+#tblEditContato input[type=submit]
+{
+    width: 99.75%;
+}
+
+#tblEditContato select
+{
+    width: 99.75%;
+}
+
+#tblEditContato td
+{
+    background-color: #528fff;
+}
+
+#tblDeletarContato
+{
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12.5px;
+}
+
+#tblDeletarContato th
+{
+    width: 20%;
+    text-align: left;
+    background-color: #528fff;
+}
+
+#tblDeletarContato input
+{
+    width: 99%;
+}
+
+#tblDeletarContato input[type=submit]
+{
+    width: 99.75%;
+}
+
+#tblDeletarContato select
+{
+    width: 99.75%;
+}
+
+#tblDeletarContato td
+{
+    background-color: #528fff;
+}
