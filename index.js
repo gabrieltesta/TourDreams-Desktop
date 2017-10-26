@@ -10,14 +10,15 @@ function createMainWindow(){
         resizable: false,
         minWidth: 1200,
         minHeight: 800,
-        show: false
+        show: false,
+        backgroundColor: '#031634'
     });
     window.loadURL('file://' + __dirname + '/login.html');
 
     //Apresenta a janela apenas após seu carregamento
     window.on('ready-to-show', () => {
         window.show();
-        window.setFullScreen(true);
+        window.maximize();
     });
 }
 
