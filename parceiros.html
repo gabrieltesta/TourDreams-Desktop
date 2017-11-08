@@ -5,8 +5,71 @@
         <title>Reservas</title>
         <link rel="stylesheet" href="css/parceiros.css">
         <script src="js/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
-        <script src="js/paginas.js" charset="utf-8"></script>
         <script src="js/sorttable.js" charset="utf-8"></script>
+        <script src="js/jquery-mask/jquery.mask.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            var mysql = require('mysql');
+            var con;
+            const electron = require('electron');
+            const remote = electron.remote;
+            let win;
+
+            function criarConexaoDB() {
+                con = mysql.createConnection({
+                    host     : 'localhost',
+                    user     : 'root',
+                    password : 'bcd127',
+                    database : 'dbtourdreams'
+                });
+                con.connect(function(err) {
+                    if(err){
+                        console.log(err.code);
+                        console.log(err.fatal);
+                    }
+                });
+            }
+
+            function selectDB() {
+                criarConexaoDB();
+                $query = 'SELECT idParceiro, nomeParceiro, cnpj, emailParceiro FROM tbl_parceiro';
+                con.query($query, function(err, rows, fields) {
+                    if(err){
+                        console.log("Houve um erro no SELECT");
+                        console.log(err);
+                        return;
+                    }
+
+                    //Criação de uma linha para a tabela HTML com os dados
+                    //provenientes do banco de dados e preenchimento de selects
+                    //para edição e exclusão de registros
+                    var html = '';
+                    for (var i = 0; i < rows.length; i++) {
+                        html += '<tr>';
+                        html += '<td>';
+                        html += rows[i].idParceiro;
+                        html += '</td>';
+                        html += '<td>';
+                        html += rows[i].nomeParceiro;
+                        html += '</td>';
+                        html += '<td>';
+                        html += rows[i].cnpj;
+                        html += '</td>';
+                        html += '<td>';
+                        html += rows[i].emailParceiro;
+                        html += '</td>';
+                        html += '</tr>';
+                    }
+                    console.log(html)
+                    $("#tblParceiro tr").after(html);
+                });
+                con.end(function(){});
+            }
+
+            selectDB();
+            $(document).ready(function () {
+                $("#txtCnpj").mask('00.000.000/0000-00');
+            })
+        </script>
     </head>
     <body>
         <div id="principal">
@@ -35,13 +98,12 @@
 			</div>
 			<div id="conteudo">
                 <div id="tableBox">
-                    <table class="sortable">
+                    <table class="sortable"  id="tblParceiro">
                         <tr>
-                            <th class="th8"># Parceiro</th>
-                            <th class="th23">Parceiro</th>
-                            <th class="th23">Endereço</th>
-                            <th class="th23">CNPJ</th>
-                            <th class="th23">Email</th>
+                            <th class="th10"># Parceiro</th>
+                            <th class="th30">Parceiro</th>
+                            <th class="th30">CNPJ</th>
+                            <th class="th30">Email</th>
                         </tr>
 
                     </table>
@@ -58,19 +120,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><label for="txtEndereco">Endereço</label></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <input type="text" name="txtEndereco">
-                                </td>
-                            </tr>
-                            <tr>
                                 <td colspan="2"><label for="txtCNPJ">CNPJ</label></td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <input type="text" name="txtCnpj" id="txtCnpj">
+                                    <input type="text" name="txtCnpj" id="txtCnpj" maxlength="18">
                                 </td>
                             </tr>
                             <tr>
@@ -78,7 +132,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <input type="text" name="txtEmail" id="txtEmail">
+                                    <input type="email" name="txtEmail" id="txtEmail">
                                 </td>
                             </tr>
                             <tr>
@@ -100,14 +154,14 @@
                     <div id="detalhesDireito">
                         <table>
                             <tr>
-                                <td><img src="" alt="parceiro"></td>
+                                <td><img src="Imagens/padrao.png" alt="parceiro"></td>
                             </tr>
                             <tr>
                                 <td><input type="file" name="filImagem" id="filImagem"></td>
                             </tr>
                             <tr>
-                                <td><input type="submit" name="btnEnviar" value="REGISTRAR"></td>
-                            </tr>    
+                                <td><button type="button" name="btnRegistrar">REGISTRAR</button></td>
+                            </tr>
                     </table>
                     </div>
                 </div>

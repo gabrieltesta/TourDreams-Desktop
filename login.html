@@ -5,6 +5,56 @@
         <title>Login</title>
         <link rel="stylesheet" href="css/login.css">
         <script src="js/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+        <script type="text/javascript">
+            var mysql = require('mysql');
+            var con;
+            const electron = require('electron');
+            const remote = electron.remote;
+            let win;
+
+            function criarConexaoDB() {
+                con = mysql.createConnection({
+                    host     : 'localhost',
+                    user     : 'root',
+                    password : 'bcd127',
+                    database : 'dbtourdreams'
+                });
+                con.connect(function(err) {
+                    if(err){
+                        console.log(err.code);
+                        console.log(err.fatal);
+                    }
+                });
+            }
+
+            function autenticar() {
+                criarConexaoDB();
+                var login = $("#txtLogin").val();
+                var senha = $("#txtSenha").val();
+                var sql = 'SELECT * FROM tbl_login WHERE login="'+login+'" AND senha="'+senha+'"';
+
+                con.query(sql, function (err, rows, fields)
+                {
+                    if(err)
+                    {
+                        console.log("Houve um erro no SELECT");
+                        console.log(err);
+                        return;
+                    }
+
+                    if(rows.length > 0)
+                    {
+                        remote.getCurrentWindow().loadURL('file://' + __dirname + '/bemvindo.html');
+                    }
+
+                    if(rows.length == 0)
+                    {
+                        alert('Usuário ou senha incorreto.');
+                    }
+                });
+            }
+
+        </script>
     </head>
     <body>
         <div id="principal">
@@ -22,16 +72,16 @@
 							<td>Login</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="txtLogin" placeholder="joaosilva"></td>
+							<td><input type="text" name="txtLogin" placeholder="joaosilva" id="txtLogin"></td>
 						</tr>
 						<tr>
 							<td>Senha</td>
 						</tr>
 						<tr>
-							<td><input type="password" name="txtSenha" placeholder="******"></td>
+							<td><input type="password" name="txtSenha" placeholder="******" id="txtSenha"></td>
 						</tr>
 						<tr>
-							<td><a href="bemvindo.html"><button id="btnLogin">LOGIN</button></a></td>
+							<td><button id="btnLogin" onclick="autenticar()">LOGIN</button></td>
 						</tr>
 					</table>
 				</div>
