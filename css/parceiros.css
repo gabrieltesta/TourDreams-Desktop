@@ -271,14 +271,14 @@ nav ul li a
 
 #detalhesEsquerdo
 {
-    width: 75%;
+    width: 50%;
     height: 100%;
     float: left;
 }
 
 #detalhesEsquerdo table
 {
-    width: 60%;
+    width: 100%;
     max-width: 90%;
     padding: 16px;
     font-family: Calibri;
@@ -290,9 +290,9 @@ nav ul li a
     color: #666666;
 }
 
-#detalhesEsquerdo table input[type="text"]
+#detalhesEsquerdo table input
 {
-    width: 86%;
+    width: 100%;
     padding-left: 16px;
     margin: 0 auto;
     font-size: 16px;
@@ -300,47 +300,33 @@ nav ul li a
     padding-bottom: 2px;
 }
 
-#detalhesEsquerdo table input[type="datetime"]
-{
-    width: 71s%;
-    padding-left: 16px;
-    margin: 0 auto;
-    font-size: 16px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
-
-#detalhesEsquerdo table select
-{
-    width: 90%;
-    padding-left: 16px;
-    margin: 0 auto;
-    font-size: 16px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
 
 #detalhesDireito
 {
-    width: 22%;
-    height: 90%;
-    padding: 16px;
+    width: 50%;
+    height: 100%;
     float: left;
+}
+
+#detalhesDireito img
+{
+    width: 200px;
+    height: 300px;
+    margin: 0 auto;
+    float: right;
+    font-family: RalewayRegular;
+    border: solid 1px #ccc;
 }
 
 #detalhesDireito table
 {
-    width: 100%;
-    font-family: RalewayRegular;
-    color: #666666;
-    font-size: 14pt;
-    text-align: center;
+    width: 200px;
+    float: right;
+    padding-right: 16px;
+    padding-top: 16px;
 }
 
-#detalhesDireito #status
+#detalhesDireito button
 {
-    color: green;
-    text-align: center;
 }
-
 /**/

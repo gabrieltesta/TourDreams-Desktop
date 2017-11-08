@@ -292,7 +292,7 @@ nav ul li a
 
 #detalhesEsquerdo table input[type="text"]
 {
-    width: 86%;
+    width: 100%;
     padding-left: 16px;
     margin: 0 auto;
     font-size: 16px;
@@ -302,7 +302,7 @@ nav ul li a
 
 #detalhesEsquerdo table input[type="datetime"]
 {
-    width: 71s%;
+    width: 71%;
     padding-left: 16px;
     margin: 0 auto;
     font-size: 16px;
@@ -312,7 +312,7 @@ nav ul li a
 
 #detalhesEsquerdo table select
 {
-    width: 90%;
+    width: 104%;
     padding-left: 16px;
     margin: 0 auto;
     font-size: 16px;
@@ -328,19 +328,17 @@ nav ul li a
     float: left;
 }
 
+#detalhesDireito canvas
+{
+    width: 250px;
+    height: 300px;
+
+    border: solid 1px #ccc;
+}
+
 #detalhesDireito table
 {
     width: 100%;
     font-family: RalewayRegular;
-    color: #666666;
-    font-size: 14pt;
-    text-align: center;
 }
-
-#detalhesDireito #status
-{
-    color: green;
-    text-align: center;
-}
-
 /**/

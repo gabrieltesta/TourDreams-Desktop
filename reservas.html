@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="css/reservas.css">
         <script src="js/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
         <script src="js/paginas.js" charset="utf-8"></script>
+        <script src="js/sorttable.js" charset="utf-8"></script>
     </head>
     <body>
         <div id="principal">
@@ -34,30 +35,240 @@
 			</div>
 			<div id="conteudo">
                 <div id="tableBox">
-                    <table>
+                    <table class="sortable">
                         <tr>
-                            <th>
-                                # Reserva
-                            </th>
-                            <th>
-                                Cliente
-                            </th>
-                            <th>
-                                Parceiro
-                            </th>
-                            <th>
-                                Hotel
-                            </th>
-                            <th>
-                                Check-in
-                            </th>
-                            <th>
-                                Check-out
-                            </th>
+                            <th class="th10"># Reserva</th>
+                            <th class="th23">Cliente</th>
+                            <th class="th23">Parceiro</th>
+                            <th class="th23">Hotel</th>
+                            <th class="th10">Check-in</th>
+                            <th class="th10">Check-out</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>João da Silva</td>
+                            <td>Insulive</td>
+                            <td>Hotel</td>
+                            <td>26/10/2017</td>
+                            <td>30/10/2017</td>
                         </tr>
                     </table>
                 </div>
                 <div id="detalhesBox">
+                    <div id="detalhesEsquerdo">
+                        <table>
+                            <tr>
+                                <td colspan="2"><h2>Reserva #0001</h2></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><label for="slcCliente">Cliente</label></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <select name="slcCliente" id="slcCliente">
+                                        <option>teagsg</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><label for="slcReserva">Reserva</label></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <select name="slcReserva" id="slcReserva">
+                                        <option>teagds</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><label for="txtParceiro">Parceiro</label></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input type="text" name="txtParceiro" id="txtParceiro" readonly>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><label for="txtHotel">Hotel</label></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input type="text" name="txtHotel" id="txtHotel" readonly>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="txtCheckIn">Check-In</label></td>
+                                <td><label for="txtCheckOut">Check-Out</label></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="datetime" name="txtCheckIn" id="txtCheckIn" readonly>
+                                </td>
+                                <td>
+                                    <input type="datetime" name="txtCheckOut" id="txtCheckOut" readonly>
+                                </td>
+                            </tr>
+                    </table>
+                    </div>
+                    <div id="detalhesDireito">
+                        <table>
+                            <tr>
+                                <th id="status" colspan="2"><h2>Concluída</h2></th>
+                            </tr>
+                            <tr>
+                                <th>Total:</th>
+                                <td>R$ 0000,00</td>
+                            </tr>
+                            <tr>
+                                <th>Diária:</th>
+                                <td>R$ 0000,00</td>
+                            </tr>
+                            <tr>
+                                <th>Lucro:</th>
+                                <td>R$ 0000,00</td>
+                            </tr>
+                            <tr>
+                                <th>Milhas:</th>
+                                <td>0 pt</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 			</div>
 		</div>
