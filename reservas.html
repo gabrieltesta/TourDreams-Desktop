@@ -5,8 +5,167 @@
         <title>Reservas</title>
         <link rel="stylesheet" href="css/reservas.css">
         <script src="js/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
-        <script src="js/paginas.js" charset="utf-8"></script>
         <script src="js/sorttable.js" charset="utf-8"></script>
+        <script src="js/jquery-mask/jquery.mask.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+        var mysql = require('mysql');
+        var con;
+        const electron = require('electron');
+        const remote = electron.remote;
+        let win;
+        var lstCliente = [];
+        var lstReserva = [];
+
+        function criarConexaoDB() {
+            con = mysql.createConnection({
+                host     : 'localhost',
+                user     : 'root',
+                password : 'bcd127',
+                dateStrings:true,
+                database : 'dbtourdreams'
+            });
+            con.connect(function(err) {
+                if(err){
+                    console.log(err.code);
+                    console.log(err.fatal);
+                }
+            });
+        }
+
+        function selectDBReservasLista() {
+            criarConexaoDB();
+            con.query('SELECT * FROM vw_reservas_desktop', function(err, rows, fields) {
+                if(err){
+                    console.log("Houve um erro no SELECT");
+                    console.log(err);
+                    return;
+                }
+
+                //Criação de uma linha para a tabela HTML com os dados
+                //provenientes do banco de dados e preenchimento de selects
+                //para edição e exclusão de registros
+                var html = '';
+                for (var i = 0; i < rows.length; i++) {
+                    html += '<tr>';
+                    html += '<td>';
+                    html += rows[i].idTransacao;
+                    html += '</td>';
+                    html += '<td>';
+                    html += rows[i].nomeCliente;
+                    html += '</td>';
+                    html += '<td>';
+                    html += rows[i].nomeParceiro;
+                    html += '</td>';
+                    html += '<td>';
+                    html += rows[i].hotel;
+                    html += '</td>';
+                    html += '<td>';
+                    html += formatarData(rows[i].dataInicio);
+                    html += '</td>';
+                    html += '<td>';
+                    html += formatarData(rows[i].dataFim);
+                    html += '</td>';
+                    html += '</tr>';
+                }
+                console.log(html)
+                $("#tblReservas tr").after(html);
+            });
+            con.end(function(){});
+        }
+
+        function selectDBClientes() {
+            criarConexaoDB();
+            con.query('SELECT DISTINCT c.idCliente, c.nomeCliente FROM tbl_cliente AS c INNER JOIN tbl_transacao AS t WHERE t.idCliente=c.idCliente;', function(err, rows, fields) {
+                if(err){
+                    console.log("Houve um erro no SELECT");
+                    console.log(err);
+                    return;
+                }
+
+                //Criação de uma linha para a tabela HTML com os dados
+                //provenientes do banco de dados e preenchimento de selects
+                //para edição e exclusão de registros
+                var select = '';
+                for (var i = 0; i < rows.length; i++) {
+                    select += '<option value="'+rows[i].idCliente+'">'+rows[i].nomeCliente+'</option>';
+                    var cliente = {"idCliente" : rows[i].idCliente,
+                                    "nomeCliente" : rows[i].nomeCliente};
+                    lstCliente.push(cliente);
+                }
+                console.log(select);
+                $("#slcCliente option").after(select);
+            });
+            con.end(function(){});
+        }
+
+        function selectDBReservas(idCliente) {
+            criarConexaoDB();
+            var query = 'SELECT * FROM vw_reservas_desktop WHERE idCliente = "'+idCliente+'";';
+            con.query(query, function(err, rows, fields) {
+                if(err){
+                    console.log("Houve um erro no SELECT");
+                    console.log(err);
+                    return;
+                }
+
+                //Criação de uma linha para a tabela HTML com os dados
+                //provenientes do banco de dados e preenchimento de selects
+                //para edição e exclusão de registros
+                var select = '';
+                for (var i = 0; i < rows.length; i++) {
+                    select += '<option value="'+rows[i].idTransacao+'">#'+rows[i].idTransacao+'</option>';
+                    var transacao = {"idTransacao" : rows[i].idTransacao,
+                                    "nomeCliente" : rows[i].nomeCliente,
+                                    "nomeParceiro" : rows[i].nomeParceiro,
+                                    "hotel" : rows[i].hotel,
+                                    "dataInicio" : formatarData(rows[i].dataInicio),
+                                    "dataFim" : formatarData(rows[i].dataFim),
+                                    "vlrTotal" : rows[i].vlrTotal,
+                                    "valorDiario" : rows[i].valorDiario,
+                                    "qtdDias" : rows[i].qtdDias};
+                    console.log(JSON.stringify(rows[i]));
+                    //alert(JSON.stringify(transacao));
+                    lstReserva.push(transacao);
+                }
+                console.log(select);
+                $("#slcReserva option").after(select);
+            });
+            con.end(function(){});
+        }
+
+        function formatarData(data)
+        {
+          dataArray = data.split("-");
+          return dataArray[2]+ "/" +dataArray[1]+ "/" +dataArray[0];
+        }
+
+        $(document).ready(function () {
+            selectDBReservasLista();
+            selectDBClientes();
+            $('#slcCliente').change(function() {
+                var idCliente = $('#slcCliente').val();
+                selectDBReservas(idCliente);
+            });
+            $('#slcReserva').change(function() {
+                var id = $('#slcReserva').val();
+                for (var i = 0; i < lstReserva.length; i++) {
+                    if (id == lstReserva[i].idTransacao) {
+                        $("#txtParceiro").val(lstReserva[i].nomeParceiro);
+                        $("#txtHotel").val(lstReserva[i].hotel);
+                        $("#txtCheckIn").val(lstReserva[i].dataInicio);
+                        $("#txtCheckOut").val(lstReserva[i].dataFim);
+                        $("#idTransacao").html('Reserva #'+lstReserva[i].idTransacao);
+                        $("#valorTotal").html('R$ '+lstReserva[i].vlrTotal.toFixed(2));
+                        $("#valorDiaria").html('R$ '+lstReserva[i].valorDiario.toFixed(2));
+                        var lucro = lstReserva[i].vlrTotal*0.1;
+                        $("#lucro").html('R$ '+lucro.toFixed(2));
+                        var mtf = lstReserva[i].qtdDias*100;
+                        $("#pontosmtf").html(mtf + ' pt');
+                    }
+                }
+            });
+        });
+        </script>
     </head>
     <body>
         <div id="principal">
@@ -35,7 +194,7 @@
 			</div>
 			<div id="conteudo">
                 <div id="tableBox">
-                    <table class="sortable">
+                    <table class="sortable" id="tblReservas">
                         <tr>
                             <th class="th10"># Reserva</th>
                             <th class="th23">Cliente</th>
@@ -50,7 +209,7 @@
                     <div id="detalhesEsquerdo">
                         <table>
                             <tr>
-                                <td colspan="2"><h2>Reserva #0001</h2></td>
+                                <td colspan="2"><h2 id="idTransacao">Reserva</h2></td>
                             </tr>
                             <tr>
                                 <td colspan="2"><label for="slcCliente">Cliente</label></td>
@@ -58,7 +217,7 @@
                             <tr>
                                 <td colspan="2">
                                     <select name="slcCliente" id="slcCliente">
-                                        <option>teagsg</option>
+                                        <option selected disabled>Selecione um cliente</option>
                                     </select>
                                 </td>
                             </tr>
@@ -68,7 +227,7 @@
                             <tr>
                                 <td colspan="2">
                                     <select name="slcReserva" id="slcReserva">
-                                        <option>teagds</option>
+                                        <option selected disabled>Selecione uma reserva</option>
                                     </select>
                                 </td>
                             </tr>
@@ -109,19 +268,19 @@
                             </tr>
                             <tr>
                                 <th>Total:</th>
-                                <td>R$ 0000,00</td>
+                                <td id="valorTotal">R$ 0000,00</td>
                             </tr>
                             <tr>
                                 <th>Diária:</th>
-                                <td>R$ 0000,00</td>
+                                <td id="valorDiaria">R$ 0000,00</td>
                             </tr>
                             <tr>
                                 <th>Lucro:</th>
-                                <td>R$ 0000,00</td>
+                                <td id="lucro">R$ 0000,00</td>
                             </tr>
                             <tr>
                                 <th>Milhas:</th>
-                                <td>0 pt</td>
+                                <td id="pontosmtf">0 pt</td>
                             </tr>
                         </table>
                     </div>

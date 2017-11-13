@@ -251,12 +251,6 @@ nav ul li a
     border-right: none;
 }
 
-#tableBox table tr:not(:first-of-type):hover
-{
-    background-color: #ccc;
-    cursor: pointer;
-}
-
 #detalhesBox
 {
     width: 80%;
