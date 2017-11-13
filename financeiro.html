@@ -15,6 +15,7 @@
         const remote = electron.remote;
         let win;
         var lstParceiro = [];
+        var lstRendimento = [];
 
         function criarConexaoDB() {
             con = mysql.createConnection({
@@ -74,6 +75,88 @@
             con.end(function(){});
         }
 
+        function selectDBRendimentos(idParceiro) {
+            lstRendimento = [];
+            criarConexaoDB();
+            var query = 'SELECT * FROM vw_reservas_grafico WHERE idParceiro="'+idParceiro+'";';
+            console.log(query);
+            con.query(query, function(err, rows, fields) {
+                if(err){
+                    console.log("Houve um erro no SELECT");
+                    console.log(err);
+                    return;
+                }
+
+                for (var i = 0; i < rows.length; i++) {
+                    var rendimento = {"idParceiro" : rows[i].idParceiro,
+                                      "mes" : rows[i].mes,
+                                      "ano" : rows[i].ano,
+                                      "total" : rows[i].total};
+                    lstRendimento.push(rendimento);
+                }
+
+                if(rows.length > 0)
+                {
+                    criarGrafico();
+                    $("#rendimentomes").html('Rendimento (30 dias) R$ '+lstRendimento[0].mes.toFixed(2));
+                    $("#rendimentoano").html('Rendimento (365 dias) R$ '+lstRendimento[0].ano.toFixed(2));
+                    $("#rendimentototal").html('Rendimento (total) R$ '+lstRendimento[0].total.toFixed(2));
+                }
+                else
+                {
+                    criarGraficoVazio();
+                    $("#rendimentomes").html('Rendimento (30 dias) R$ 0,00');
+                    $("#rendimentoano").html('Rendimento (365 dias) R$ 0,00');
+                    $("#rendimentototal").html('Rendimento (total) R$ 0,00');
+                }
+            });
+            con.end(function(){});
+        }
+
+        function criarGrafico() {
+            new Chart(document.getElementById("bar-chart"), {
+            type: 'bar',
+            data: {
+              labels: ["Mensal", "Anual", "Total"],
+              datasets: [
+                {
+                  backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+                  data: [lstRendimento[0].mes, lstRendimento[0].ano, lstRendimento[0].total]
+                }
+              ]
+            },
+            options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: 'Rendimento do Parceiro'
+              }
+            }
+            });
+        }
+
+        function criarGraficoVazio() {
+            new Chart(document.getElementById("bar-chart"), {
+            type: 'bar',
+            data: {
+              labels: ["Mensal", "Anual", "Total"],
+              datasets: [
+                {
+                  backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+                  data: [0,0,0]
+                }
+              ]
+            },
+            options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: 'Rendimento do Parceiro'
+              }
+            }
+            });
+        }
+
         $(document).ready(function () {
             $("#txtCnpj").mask('00.000.000/0000-00');
             selectDB();
@@ -83,7 +166,8 @@
                     if (id == lstParceiro[i].idParceiro) {
                         $('#txtCnpj').val(lstParceiro[i].cnpj);
                         $('#txtEmail').val(lstParceiro[i].emailParceiro);
-                        $('td h2').html(lstParceiro[i].nomeParceiro)
+                        $('td h2').html(lstParceiro[i].nomeParceiro);
+                        selectDBRendimentos(lstParceiro[i].idParceiro);
                     }
                 }
             });
@@ -165,13 +249,13 @@
                         <canvas id="bar-chart" width="200" height="200"></canvas>
                         <table>
                             <tr>
-                                <td>Rendimento (mês): R$ 1000,00</td>
+                                <td id="rendimentomes">Rendimento (30 dias): R$ 0,00</td>
                             </tr>
                             <tr>
-                                <td>Rendimento (ano): R$ 12000,00</td>
+                                <td id="rendimentoano">Rendimento (365 dias): R$ 0,00</td>
                             </tr>
                             <tr>
-                                <td>Rendimento (total): R$ 20000,00</td>
+                                <td id="rendimentototal">Rendimento (total): R$ 0,00</td>
                             </tr>
                         </table>
                     </div>
@@ -180,24 +264,3 @@
 		</div>
     </body>
 </html>
-<script type="text/javascript">
-    new Chart(document.getElementById("bar-chart"), {
-    type: 'bar',
-    data: {
-      labels: ["Mensal", "Anual", "Total"],
-      datasets: [
-        {
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-          data: [1000,12000,20000]
-        }
-      ]
-    },
-    options: {
-      legend: { display: false },
-      title: {
-        display: true,
-        text: 'Rendimento do Parceiro'
-      }
-    }
-    });
-</script>
